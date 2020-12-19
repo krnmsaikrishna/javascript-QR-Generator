@@ -1,0 +1,22 @@
+<script type="text/javascript">
+function callQR(content){
+
+  var qrContent = document.getElementById('qr_content').value;
+  var qrContent = escape(qrContent);
+  var qrSize = document.getElementById('qr_size').value;
+  var qrUrl = 'https://chart.googleapis.com/chart?chs=' + qrSize + '&amp;cht=qr&amp;chl=' + qrContent; 
+  var qrTag = '<img alt="QR Code" src="' + qrUrl + '" />';
+  document.getElementById('qr_code').innerHTML = qrTag;
+  document.getElementById('qr_embed').value = qrTag;
+}
+</script>
+<textarea name="qr_content" id="qr_content" maxlength="2000" style="width:400px;height:150px;margin:5px;padding:5px;" onKeyUp="callQR()"></textarea><br />
+
+<label for="qr_size">Size:</label>
+<select name="qr_size" id="qr_size" onChange="callQR();">
+	<option value="80x80">Small (80x80)</option>
+	<option value="150x150">Medium (150x150)</option>
+	<option selected="selected"  value="200x200">Large (200x200)</option>
+	<option value="300x300">Extra Large (300x300)</option>
+</select>
+<div id="qr_code" style="float:left;padding:10px;min-height:200px;font-size:14px;font-weight:bold;">Your QR Code will display here</div>
